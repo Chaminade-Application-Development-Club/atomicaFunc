@@ -70,4 +70,23 @@ export default class SheetApi {
       });
     });
   }
+
+  public async testGet(requestRange: string){
+    return new Promise<string[]>((resolve) => {
+      let results = Array<string>();
+      console.log(this.spreadsheetId);
+      this.sheet.spreadsheets.values.get({
+        spreadsheetId: this.spreadsheetId,
+        range: requestRange,
+        auth: this.auth,
+      }).then((res: any) => {
+        // const vals = res.data.values;
+        console.log("gg");
+        // for (const f of vals) {
+        //   results.push(f[0]);
+        // }
+        resolve(results);
+      });
+    });
+  } 
 }
