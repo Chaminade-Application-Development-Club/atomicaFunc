@@ -71,12 +71,14 @@ export const syncSheet2Database = functions.https.onRequest(async (request, resp
   // });
   await sheetAPI_AP.loadLeaderBoard().then((results) => {
     const apLogRef = db.collection(classes.AP).doc("students").collection("studentsLog").doc(Date.now().toString());
+    //console.log(toPlainObject(results));
+    //console.log(typeof(toPlainObject(results)));
     apLogRef.set(toPlainObject(results)).then((res) => {
       console.log("DONE!");
-      console.log(res)
+      console.log(res);
       response.send("Success");
     });
-  })
+  });
 });
 
 //TODO: fix it 
@@ -113,3 +115,27 @@ function addStudent(studentType: string, firstName: string, lastName: string) {
     last: lastName,
   });
 }
+
+// testing method to resolve undefined variable
+// results.forEach(element => {
+//   if (typeof element.firstName === "undefined") {
+//     console.log(element);
+//   }
+//   if (typeof element.lastName === "undefined") {
+//     console.log(element);
+//   }
+//   if (typeof element.gold === "undefined") {
+//     console.log(element);
+//   }
+//   if (typeof element.guild === "undefined") {
+//     console.log(element);
+//   }
+//   if (typeof element.house === "undefined") {
+//     console.log(element);
+//   }
+//   if (typeof element.xp === "undefined") {
+//     console.log(element);
+//   }
+//   if (typeof element.level === "undefined") {
+//     console.log(element);
+//   }

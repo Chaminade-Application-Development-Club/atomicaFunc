@@ -63,8 +63,12 @@ export default class SheetApi {
         auth: this.auth,
       }).then((res: any) => {
         const vals = res.data.values;
-        for (const f of vals) {
-          results.push(f[0]);
+        for (let f of vals) {
+          if(typeof(f[0]) === "undefined") {
+            f[0] = "None";
+            results.push(f[0]);
+          }
+          else results.push(f[0]);
         }
         resolve(results);
       });
